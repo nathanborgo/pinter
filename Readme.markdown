@@ -26,6 +26,10 @@ Returns the hash of one subscription. Use the subscription's "secret" attribute 
 
     Pinter::Subscription.find "23862dc3979f365d"
 
+You can also find the subscription by your custom identifier.
+
+    Pinter::Subscription.find_by_identifier "231"
+
 ### See your page's URL
 
 Returns the URL to your PintPay page.
