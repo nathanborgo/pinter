@@ -30,15 +30,13 @@ module Pinter
 
     def self.find(secret)
       sub = get "/subscriptions/#{secret}", :query => { :api_key => Pinter.api_key, :api_secret => Pinter.api_secret }
-      sub = sub.parsed_response
-      sub.to_subscription
+      sub.parsed_response.to_subscription
     end
 
     def self.find_by_identifier(identifier)
-      all.each do |subscription|
-        return subscription if subscription.user.identifier == identifier
-      end
-      return nil
+      sub = get "/subscriptions/identifier/#{identifier}", :query => { :api_key => Pinter.api_key,
+                                                                       :api_secret => Pinter.api_secret }
+      sub.parsed_response.to_subscription
     end
 
   end
