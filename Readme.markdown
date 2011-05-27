@@ -40,6 +40,13 @@ You can also supply the parameters, like the user's email and identifier.
 
     Pinter.url :email => "user@domain.com", :identifier => "1"
 
+### Cancel a subscription
+
+Returns a Results object for whether or not the subscription was cancelled.
+
+    subscription = Pinter::Subscription.find "23862dc3979f365d"
+    subscription.cancel
+
 ## Todo
 
 *   Tests.

@@ -1,7 +1,7 @@
 module Pinter
-	class Result
+  class Result
 
-		include Base
+    include Base
 
     attr_reader :success, :message
 
@@ -9,5 +9,5 @@ module Pinter
       set_instance_variables_from_hash attributes
     end
 
-	end
+  end
 end
