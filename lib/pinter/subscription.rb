@@ -16,24 +16,6 @@ module Pinter
     end
 
     def self.all
-      all_subscriptions
-    end
-
-    def self.find(secret)
-      sub = get "/subscriptions/#{secret}", :query => { :api_key => Pinter.api_key, :api_secret => Pinter.api_secret }
-      sub = sub.parsed_response
-      sub.to_subscription
-    end
-
-    def self.find_by_identifier(identifier)
-      all_subscriptions.each do |subscription|
-        return subscription if subscription.identifier == identifier
-      end
-    end
-
-    private
-
-    def all_subscriptions
       collection = []
       raw = get "/subscriptions", :query => { :api_key => Pinter.api_key, :api_secret => Pinter.api_secret }
 
@@ -44,6 +26,19 @@ module Pinter
       end
 
       return collection
+    end
+
+    def self.find(secret)
+      sub = get "/subscriptions/#{secret}", :query => { :api_key => Pinter.api_key, :api_secret => Pinter.api_secret }
+      sub = sub.parsed_response
+      sub.to_subscription
+    end
+
+    def self.find_by_identifier(identifier)
+      all.each do |subscription|
+        return subscription if subscription.user.identifier == identifier
+      end
+      return nil
     end
 
   end
