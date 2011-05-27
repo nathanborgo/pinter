@@ -7,7 +7,7 @@ module Pinter
     # default_params :api_key => Pinter.api_key, :api_secret => Pinter.api_secret
     format :json
 
-    attr_reader :first_name, :last_name, :recurring, :secret, :user, :product, :created_at
+    attr_reader :first_name, :last_name, :recurring, :secret, :user, :product, :identifier, :created_at
 
     def initialize(attributes)
       set_instance_variables_from_hash attributes
