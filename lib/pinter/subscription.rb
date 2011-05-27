@@ -39,5 +39,18 @@ module Pinter
       sub.parsed_response.to_subscription
     end
 
+    def cancel
+      response = Subscription.put "/subscriptions/#{secret}/cancel", :body => { :api_key => Pinter.api_key, :api_secret => Pinter.api_secret }
+      parsed_response = Crack::JSON.parse response.parsed_response
+
+      if response.headers["status"] == 200
+        attributes = {:success => true, :message => "Cancelled subscription"}
+      else
+        attributes = {:success => false, :message => parsed_response}
+      end
+
+      Pinter::Result.new attributes
+    end
+
   end
 end
